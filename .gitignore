@@ -1,0 +1,15 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### IntelliJ IDEA ###
+/.idea/
+
+### Mac OS ###
+.DS_Store
+
+### Tex ###
+*.out
+*.aux
+*.synctex.gz
+*.log
