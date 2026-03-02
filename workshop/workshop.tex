@@ -99,11 +99,11 @@
 	Die Programmiersprache Java stellt einfache Funktionalitäten bereit, MIDI Nachrichten an angeschlossene Geräte zu senden.
 	Zusätzlich verfügt Java über einen "eingebauten" Synthesizer und eine eingebaute Drum Machine.
 	Auf Ihrem Rechner finden Sie folgendes Beispielprogramm:
-	\lstinputlisting[firstline=5]{../src/main/java/de/haw/landshut/music/Main.java}
+	\lstinputlisting{../src/main/java/Main.java}
 	Dieser Beispielcode macht folgendes:
 	\begin{itemize}
 		\item Erzeugung eines Objektes der Klasse "JavaAndMidi".
-		Dise gibt Ihnen die Möglichkeit, über den Synthesizer Channel oder Drum Machine MIDI Channel Noten und Percussion abzuspielen.
+		Dise gibt Ihnen die Möglichkeit, über den Synthesizer Channel oder Drum Machine Channel Noten und Percussion abzuspielen.
 		\item Speichern des Midi Channels für die Drum Machine in die variable \verb|drumChannel|.
 		\item Speichern des Midi Channels für den Synthesizer in die variable \verb|synthesizerChannel|.
 		\item Abspielen eines Drum Sounds.
@@ -130,18 +130,13 @@ myChannel.allNotesOff();
 	Damit eine Note auch Zeit hat um zu klingen, muss zwischen NOTE ON und NOTE OFF eine Pause stattfinden:
 \begin{lstlisting}
 myChannel.noteOn(35, 127);
-sleep(500);
+javaAndMidi.sleep(500);
 myChannel.allNotesOff();	
 \end{lstlisting}
 
 	\subsection{Loops}
-	In Java können mit den Schlüsselwörtern \verb|for| und \verb|while| Schleifen erstellt werden:
-\begin{lstlisting}
-while (Bedingung) { // tue stuff solange, wie Bedingung erfuellt ist
-	// stuff
-}
-\end{lstlisting}
-
+	In Java können mit den Schlüsselwörtern \verb|for| können Schleifen erstellt werden.
+	Alles was innerhalb den geschweiften Klammern der Schleife steht wird wiederholt:
 \begin{lstlisting}
 for (int i = 0; i < 10; i++) { // tue stuff 10 mal
 	// stuff

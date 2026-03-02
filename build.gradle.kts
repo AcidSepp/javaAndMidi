@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    kotlin("jvm") version "2.1.20"
 }
 
 repositories {
@@ -8,7 +7,14 @@ repositories {
 }
 
 group = "de.haw.landshut"
-version = "0.1"
+version = "0.2"
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
 val bundleExamples = tasks.register<Zip>("bundle") {
     group = "bundle"
