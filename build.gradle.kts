@@ -16,7 +16,17 @@ java {
     }
 }
 
+val cleanBundle = tasks.register<Delete>("cleanBundle") {
+    delete(file(rootProject.layout.buildDirectory.file("bundle")))
+}
+
+val buildPdf = tasks.register<Exec>("buildPdf") {
+    workingDir = file("workshop")
+    commandLine("pdflatex", "-interaction=nonstopmode", "workshop.tex")
+}
+
 val bundleExamples = tasks.register<Zip>("bundle") {
+    dependsOn(cleanBundle, buildPdf)
     group = "bundle"
     archiveFileName = "javaAndMidi-${project.version}.zip"
     destinationDirectory = layout.buildDirectory.dir("bundle")
@@ -38,10 +48,16 @@ val bundleExamples = tasks.register<Zip>("bundle") {
     from(file("gradle")) {
         into("javaAndMidi/gradle")
     }
-    from(file("build.gradle.kts")) {
+    from(file("build.gradle.kts.minimal")) {
         into("javaAndMidi")
+        rename {
+            "build.gradle.kts"
+        }
     }
     from(file("gradlew")) {
+        filePermissions {
+            unix("rwxr-xr-x")
+        }
         into("javaAndMidi")
     }
     from(file("gradlew.bat")) {
